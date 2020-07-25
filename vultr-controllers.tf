@@ -12,7 +12,7 @@ resource "vultr_server" "controllers" {
     type           = "ssh"
     host           = self.main_ip
     user           = "root"
-    private_key    = var.private_key
+    private_key    = var.ssh_private_key
   }
 
   provisioner "file" {
