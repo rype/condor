@@ -47,7 +47,7 @@ resource "null_resource" "cluster_init" {
   }
 
   provisioner "local-exec" {
-    command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@${vultr_server.controllers[0].main_ip}:~/.kube/config admin-${terraform.workspace}.config"
+    command = "rsync -avz -e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\" --progress root@${vultr_server.controllers[0].main_ip}:~/.kube/config admin-${terraform.workspace}.config"
   }
 
   provisioner "file" {
